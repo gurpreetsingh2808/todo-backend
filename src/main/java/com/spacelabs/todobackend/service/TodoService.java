@@ -1,10 +1,12 @@
 package com.spacelabs.todobackend.service;
 
+import com.spacelabs.todobackend.repository.TodoRepository;
 import com.spacelabs.todobackend.dto.Todo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,34 +16,28 @@ import java.util.List;
 @Service
 public class TodoService {
 
-    private List<Todo> listTodos = new ArrayList<>(Arrays.asList(
-            new Todo(1, "Title", "Desc", "3:14", true),
-                    new Todo(2, "Title", "Desc", "6:56", false),
-                    new Todo(3, "Title", "Desc", "1:00", true)
-            ));
+    @Autowired
+    private TodoRepository todoRepository;
 
     public List<Todo> getAllTodos() {
+        List<Todo> listTodos = new ArrayList<>();
+        todoRepository.findAll().forEach(listTodos::add);
         return listTodos;
     }
 
     public Todo getTodo(int id) {
-        return listTodos.stream().filter(t -> t.getId() == id).findFirst().get();
+        return todoRepository.findOne(id);
     }
 
     public void addTodo(Todo todo) {
-        listTodos.add(todo);
+        todoRepository.save(todo);
     }
 
     public void updateTodo(int id, Todo todo) {
-        for (Todo currentTodo : listTodos) {
-            if(todo.getId() == currentTodo.getId()) {
-                listTodos.set(id, todo);
-                return;
-            }
-        }
+        todoRepository.save(todo);
     }
 
     public void deleteTodo(int id) {
-        listTodos.removeIf(t -> t.getId() == id);
+        todoRepository.delete(id);
     }
 }
