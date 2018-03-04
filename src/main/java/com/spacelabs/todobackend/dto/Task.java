@@ -5,7 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by Gurpreet on 01-03-2018.
@@ -17,17 +20,9 @@ import javax.persistence.*;
 @Entity
 public class Task {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToOne
-    private Todo todo;
     private String description;
     private boolean completed;
-
-    public Task(int id, String description, boolean completed, int todoId) {
-        this.id = id;
-        this.todo = new Todo(todoId, "title", "time");
-        this.description = description;
-        this.completed = completed;
-    }
+    private int todoId;
 }

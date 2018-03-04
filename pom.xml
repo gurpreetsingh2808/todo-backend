@@ -47,14 +47,6 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-
-        <!-- Firebase admin -->
-        <dependency>
-            <groupId>com.google.firebase</groupId>
-            <artifactId>firebase-admin</artifactId>
-            <version>5.6.0</version>
-        </dependency>
-
         <!-- Dependency injection -->
         <dependency>
             <groupId>javax.inject</groupId>

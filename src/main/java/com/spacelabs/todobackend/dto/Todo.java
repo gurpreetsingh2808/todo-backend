@@ -5,7 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import java.util.List;
 
 /**
@@ -21,17 +24,10 @@ public class Todo {
 
     @Id
     private int id;
+    @ManyToMany
+    @JoinColumn(name = "id", referencedColumnName = "todoId")
+    private List<Task> tasks;
     private String title;
-//    @OneToOne
-//    private Task task;
-//    private List<Task> tasks;
     private String time;
 
-
-//    public Todo(int id, String title, String time) {
-//        this.id = id;
-//        this.title = title;
-//        this.task = new Task(taskId, id, "desc",false);
-//        this.time = time;
-//    }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +30,9 @@ public class TaskController {
         return taskService.getTask(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/api/tasks/addtask/{todoId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public HttpStatus addTask(@RequestBody Task task, @PathVariable int todoId) {
+    @RequestMapping(method = RequestMethod.POST, value = "/api/tasks/addtask", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HttpStatus addTask(@RequestBody Task task) {
         try {
-            task.setTodo(new Todo(todoId, "titlenew", "timenew"));
             taskService.addTask(task);
             return HttpStatus.OK;
         } catch (Exception e) {
@@ -44,7 +44,6 @@ public class TaskController {
     @RequestMapping(method = RequestMethod.PUT, value = "/api/tasks/updatetask/{todoId}")
     public HttpStatus updateTask(@RequestBody Task task, @PathVariable int todoId) {
         try {
-            task.setTodo(new Todo(todoId, "", ""));
             taskService.updateTask(task);
             return HttpStatus.OK;
         } catch (Exception e) {

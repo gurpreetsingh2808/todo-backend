@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TaskRepository extends CrudRepository<Task, Integer> {
 
-//    public List<Task> findByTaskId(int id);
+    public List<Task> findByTodoId(int id);
 }

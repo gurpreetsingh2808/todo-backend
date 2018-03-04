@@ -1,9 +1,8 @@
 package com.spacelabs.todobackend.service;
 
-import com.spacelabs.todobackend.repository.TodoRepository;
 import com.spacelabs.todobackend.dto.Todo;
+import com.spacelabs.todobackend.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

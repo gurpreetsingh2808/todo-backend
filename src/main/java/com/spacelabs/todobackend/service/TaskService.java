@@ -2,9 +2,7 @@ package com.spacelabs.todobackend.service;
 
 import com.spacelabs.todobackend.dto.Task;
 import com.spacelabs.todobackend.repository.TaskRepository;
-import com.spacelabs.todobackend.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ public class TaskService {
 
     public List<Task> getAllTasks(int id) {
         List<Task> listTasks = new ArrayList<>();
-        taskRepository.findAll().forEach(listTasks::add);
+        taskRepository.findByTodoId(id).forEach(listTasks::add);
         return listTasks;
     }
 
